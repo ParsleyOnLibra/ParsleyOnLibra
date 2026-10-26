@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AMR의 드문 위치 오차를 확인하기 위해 반복 주행 테스트를 자동화하고 재현 근거를 남긴 경험.">
+  <meta name="theme-color" content="#103d35">
+  <title>반복 주행 테스트를 자동화한 이유 | 양종수</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="../">JONGSU<span>.</span>YANG</a><nav class="nav" aria-label="주 메뉴"><a href="../#about">소개</a><a href="../#projects">프로젝트</a><a href="../#writing">기록</a></nav></div></header>
+  <main id="main">
+    <header class="article-header"><div class="shell"><p class="meta">ROBOT QA / FIELD NOTE</p><h1>반복 주행 테스트를<br>자동화한 이유</h1><p>한 번 더 돌리는 것만으로는 충분하지 않았습니다. 드물게 발생하는 장애를 재현하고, 다른 사람이 확인할 수 있는 근거로 남겨야 했습니다.</p></div></header>
+    <article class="article-body">
+      <p>AMR을 검증하면서 로봇이 회전과 이동을 마친 뒤 원래 위치를 정확히 잡지 못하는 사례를 보았습니다. 항상 나타나는 현상이 아니어서 짧은 시간의 수동 테스트만으로는 재현하기 어려웠습니다.</p>
+      <h2>반복 횟수를 확보하기</h2>
+      <p>검증 시간이 제한된 상황에서 한 사람이 계속 같은 작업을 수행하는 방식에는 한계가 있었습니다. Python을 공부하고 Selenium으로 관제 웹 화면을 조작해 반복 작업을 실행하도록 만들었습니다. 야간에도 테스트를 이어 가고, 그동안 다른 검증도 진행할 수 있도록 하려는 목적이었습니다.</p>
+      <h2>실패를 설명할 수 있는 기록 만들기</h2>
+      <p>반복만 늘리면 장애가 나타났다는 사실은 알 수 있어도 원인을 좁히기 어렵습니다. 그래서 로봇 로그를 살펴보고, 발생 조건과 빈도를 기록하고, 필요한 장면은 영상으로 확보했습니다. 유사한 과거 이슈가 있다면 Jira와 Confluence에서 연결해 개발팀이 맥락을 이어 볼 수 있게 했습니다.</p>
+      <blockquote>재현 횟수와 장애 근거가 있어야 다음 사람이 같은 문제를 확인할 수 있습니다.</blockquote>
+      <h2>남은 생각</h2>
+      <p>자동화가 곧 완전한 검증은 아닙니다. 어떤 조건으로 반복했는지, 놓친 환경이 있는지 함께 적어야 결과를 해석할 수 있습니다. 이 경험 이후 저는 테스트를 실행하는 과정뿐 아니라 테스트 결과를 전달하는 형식도 QA 업무의 일부로 생각하게 됐습니다.</p>
+      <p class="note">이 글은 이력서에 적은 실무 경험을 공개 가능한 수준으로 정리한 것입니다. 고객사 환경과 내부 수치, 비공개 로그는 포함하지 않았습니다.</p>
+      <a class="back-link" href="../#writing">← 글 목록으로 돌아가기</a>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>© 2026 양종수</p><p>Observe · Verify · Improve</p></div></footer>
+</body>
+</html>
