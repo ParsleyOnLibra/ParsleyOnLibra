@@ -27,6 +27,10 @@
 
 아파트 실거래가가 선택한 날짜의 주식 몇 주에 해당하는지 환산하는 웹 프로젝트입니다. 로컬 Python 버전에는 실제 거래·종가·환율 수집과 관측일 표시를 구현했습니다. [공개 웹 데모](https://parsleyonlibra.github.io/property-simulator-portfolio/)는 가상 예시로 계산 과정을 보여주며, 데이터 제공 조건이 다른 실제 주식 시세를 공개 배포하지 않습니다.
 
+### [AMR 미션·도킹 QA 테스트 랩](https://parsleyonlibra.github.io/ParsleyOnLibra/projects/amr-qa-lab/)
+
+가상 AMR 관제 요구사항을 결정표·경계값·상태 전이로 분석해 20개 테스트케이스를 설계했습니다. 실행 결과 20/20 통과와 통제된 오류 주입 3/3 검출을 공개합니다. 오류 주입 중 발견한 테스트케이스 사전 조건의 결함도 재현·수정 기록으로 남겼습니다. 실제 제품의 테스트 결과는 아닙니다. [테스트 문서와 코드](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/amr-qa-lab)
+
 ## 사용해 본 도구와 관심사
 
 `Python` · `Selenium` · `Jira` · `Confluence` · `Linux / Ubuntu` · `AMR 테스트` · `데이터 품질 검증`

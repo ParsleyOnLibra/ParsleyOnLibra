@@ -1,0 +1,1212 @@
+{
+  "project": "AMR Mission and Docking QA Lab",
+  "sut": "fictional deterministic simulator",
+  "total": 20,
+  "passed": 20,
+  "failed": 0,
+  "cases": [
+    {
+      "id": "TC-MIS-01",
+      "title": "배터리 20%에서 미션 승인",
+      "requirements": [
+        "R-01",
+        "R-02"
+      ],
+      "technique": "boundary value",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-MIS-02",
+      "title": "지도가 없으면 미션 거부",
+      "requirements": [
+        "R-01"
+      ],
+      "technique": "decision table",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "MAP_MISSING",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "MAP_MISSING",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "MAP_MISSING",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-MIS-03",
+      "title": "경로가 유효하지 않으면 미션 거부",
+      "requirements": [
+        "R-01"
+      ],
+      "technique": "decision table",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "ROUTE_INVALID",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "ROUTE_INVALID",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "ROUTE_INVALID",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-MIS-04",
+      "title": "이동 중 중복 미션 거부",
+      "requirements": [
+        "R-01"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "INVALID_STATE",
+          "from": "MOVING",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-BAT-01",
+      "title": "배터리 19%에서 미션 거부",
+      "requirements": [
+        "R-02"
+      ],
+      "technique": "boundary value",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "BATTERY_LOW",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "BATTERY_LOW",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "BATTERY_LOW",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-BAT-02",
+      "title": "배터리 21%에서 미션 승인",
+      "requirements": [
+        "R-02"
+      ],
+      "technique": "boundary value",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-BAT-03",
+      "title": "배터리 0%에서 미션 거부",
+      "requirements": [
+        "R-02"
+      ],
+      "technique": "equivalence partition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "BATTERY_LOW",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "BATTERY_LOW",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "BATTERY_LOW",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-BAT-04",
+      "title": "배터리 범위 밖 입력 거부",
+      "requirements": [
+        "R-06"
+      ],
+      "technique": "boundary value",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "set_battery",
+          "value": -1,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_BATTERY",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_BATTERY",
+            "state": "IDLE"
+          }
+        },
+        {
+          "command": "set_battery",
+          "value": 101,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_BATTERY",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_BATTERY",
+            "state": "IDLE"
+          }
+        },
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "set_battery",
+          "accepted": false,
+          "code": "INVALID_BATTERY",
+          "from": "IDLE",
+          "to": "IDLE"
+        },
+        {
+          "seq": 2,
+          "action": "set_battery",
+          "accepted": false,
+          "code": "INVALID_BATTERY",
+          "from": "IDLE",
+          "to": "IDLE"
+        },
+        {
+          "seq": 3,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-OBS-01",
+      "title": "장애물 감지 후 해제 시 이동 재개",
+      "requirements": [
+        "R-03"
+      ],
+      "technique": "state transition",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "detect_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "OBSTACLE_DETECTED",
+            "state": "BLOCKED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OBSTACLE_DETECTED",
+            "state": "BLOCKED"
+          }
+        },
+        {
+          "command": "clear_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "OBSTACLE_CLEARED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OBSTACLE_CLEARED",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "detect_obstacle",
+          "accepted": true,
+          "code": "OBSTACLE_DETECTED",
+          "from": "MOVING",
+          "to": "BLOCKED"
+        },
+        {
+          "seq": 3,
+          "action": "clear_obstacle",
+          "accepted": true,
+          "code": "OBSTACLE_CLEARED",
+          "from": "BLOCKED",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-OBS-02",
+      "title": "감지 전 장애물 해제 명령 거부",
+      "requirements": [
+        "R-03"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "clear_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "MOVING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "clear_obstacle",
+          "accepted": false,
+          "code": "INVALID_STATE",
+          "from": "MOVING",
+          "to": "MOVING"
+        }
+      ]
+    },
+    {
+      "id": "TC-OBS-03",
+      "title": "막힌 상태에서 중복 감지 거부",
+      "requirements": [
+        "R-03"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "detect_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "OBSTACLE_DETECTED",
+            "state": "BLOCKED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OBSTACLE_DETECTED",
+            "state": "BLOCKED"
+          }
+        },
+        {
+          "command": "detect_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "BLOCKED"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "BLOCKED"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "detect_obstacle",
+          "accepted": true,
+          "code": "OBSTACLE_DETECTED",
+          "from": "MOVING",
+          "to": "BLOCKED"
+        },
+        {
+          "seq": 3,
+          "action": "detect_obstacle",
+          "accepted": false,
+          "code": "INVALID_STATE",
+          "from": "BLOCKED",
+          "to": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "id": "TC-EST-01",
+      "title": "비상정지 중 미션·도킹·재개 거부",
+      "requirements": [
+        "R-04"
+      ],
+      "technique": "state transition",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "press_estop",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "ESTOP_PRESSED",
+            "state": "ESTOP"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "ESTOP_PRESSED",
+            "state": "ESTOP"
+          }
+        },
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          }
+        },
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          }
+        },
+        {
+          "command": "clear_obstacle",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "ESTOP_ACTIVE",
+            "state": "ESTOP"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "press_estop",
+          "accepted": true,
+          "code": "ESTOP_PRESSED",
+          "from": "MOVING",
+          "to": "ESTOP"
+        },
+        {
+          "seq": 3,
+          "action": "start_mission",
+          "accepted": false,
+          "code": "ESTOP_ACTIVE",
+          "from": "ESTOP",
+          "to": "ESTOP"
+        },
+        {
+          "seq": 4,
+          "action": "request_dock",
+          "accepted": false,
+          "code": "ESTOP_ACTIVE",
+          "from": "ESTOP",
+          "to": "ESTOP"
+        },
+        {
+          "seq": 5,
+          "action": "clear_obstacle",
+          "accepted": false,
+          "code": "ESTOP_ACTIVE",
+          "from": "ESTOP",
+          "to": "ESTOP"
+        }
+      ]
+    },
+    {
+      "id": "TC-EST-02",
+      "title": "비상정지 해제 후 자동 재개 없음",
+      "requirements": [
+        "R-04"
+      ],
+      "technique": "state transition",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "press_estop",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "ESTOP_PRESSED",
+            "state": "ESTOP"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "ESTOP_PRESSED",
+            "state": "ESTOP"
+          }
+        },
+        {
+          "command": "release_estop",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "ESTOP_RELEASED",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "ESTOP_RELEASED",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "press_estop",
+          "accepted": true,
+          "code": "ESTOP_PRESSED",
+          "from": "MOVING",
+          "to": "ESTOP"
+        },
+        {
+          "seq": 3,
+          "action": "release_estop",
+          "accepted": true,
+          "code": "ESTOP_RELEASED",
+          "from": "ESTOP",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-EST-03",
+      "title": "비상정지 아닌 상태에서 해제 명령 거부",
+      "requirements": [
+        "R-04"
+      ],
+      "technique": "state transition",
+      "priority": "P2",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "release_estop",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "release_estop",
+          "accepted": false,
+          "code": "INVALID_STATE",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-DOC-01",
+      "title": "도킹 성공 시 충전 상태",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "state transition",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          }
+        },
+        {
+          "command": "dock_success",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_SUCCEEDED",
+            "state": "CHARGING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_SUCCEEDED",
+            "state": "CHARGING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "request_dock",
+          "accepted": true,
+          "code": "DOCKING_STARTED",
+          "from": "IDLE",
+          "to": "DOCKING"
+        },
+        {
+          "seq": 2,
+          "action": "dock_success",
+          "accepted": true,
+          "code": "DOCKING_SUCCEEDED",
+          "from": "DOCKING",
+          "to": "CHARGING"
+        }
+      ]
+    },
+    {
+      "id": "TC-DOC-02",
+      "title": "도킹 타임아웃 시 장애 상태",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "state transition",
+      "priority": "P0",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          }
+        },
+        {
+          "command": "dock_timeout",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "request_dock",
+          "accepted": true,
+          "code": "DOCKING_STARTED",
+          "from": "IDLE",
+          "to": "DOCKING"
+        },
+        {
+          "seq": 2,
+          "action": "dock_timeout",
+          "accepted": true,
+          "code": "DOCKING_TIMED_OUT",
+          "from": "DOCKING",
+          "to": "FAULT"
+        }
+      ]
+    },
+    {
+      "id": "TC-DOC-03",
+      "title": "타임아웃 후 성공 신호 거부",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          }
+        },
+        {
+          "command": "dock_timeout",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          }
+        },
+        {
+          "command": "dock_success",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "FAULT"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "FAULT"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "request_dock",
+          "accepted": true,
+          "code": "DOCKING_STARTED",
+          "from": "IDLE",
+          "to": "DOCKING"
+        },
+        {
+          "seq": 2,
+          "action": "dock_timeout",
+          "accepted": true,
+          "code": "DOCKING_TIMED_OUT",
+          "from": "DOCKING",
+          "to": "FAULT"
+        },
+        {
+          "seq": 3,
+          "action": "dock_success",
+          "accepted": false,
+          "code": "INVALID_STATE",
+          "from": "FAULT",
+          "to": "FAULT"
+        }
+      ]
+    },
+    {
+      "id": "TC-DOC-04",
+      "title": "도크가 없으면 요청 거부",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "decision table",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": false,
+            "code": "DOCK_UNAVAILABLE",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "DOCK_UNAVAILABLE",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "request_dock",
+          "accepted": false,
+          "code": "DOCK_UNAVAILABLE",
+          "from": "IDLE",
+          "to": "IDLE"
+        }
+      ]
+    },
+    {
+      "id": "TC-DOC-05",
+      "title": "이동 중 도킹 요청 가능",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "start_mission",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "MISSION_STARTED",
+            "state": "MOVING"
+          }
+        },
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "start_mission",
+          "accepted": true,
+          "code": "MISSION_STARTED",
+          "from": "IDLE",
+          "to": "MOVING"
+        },
+        {
+          "seq": 2,
+          "action": "request_dock",
+          "accepted": true,
+          "code": "DOCKING_STARTED",
+          "from": "MOVING",
+          "to": "DOCKING"
+        }
+      ]
+    },
+    {
+      "id": "TC-FLT-01",
+      "title": "도킹 장애 초기화 후 대기 상태",
+      "requirements": [
+        "R-05"
+      ],
+      "technique": "state transition",
+      "priority": "P1",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "command": "request_dock",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_STARTED",
+            "state": "DOCKING"
+          }
+        },
+        {
+          "command": "dock_timeout",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "DOCKING_TIMED_OUT",
+            "state": "FAULT"
+          }
+        },
+        {
+          "command": "reset_fault",
+          "value": null,
+          "expected": {
+            "accepted": true,
+            "code": "FAULT_RESET",
+            "state": "IDLE"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "FAULT_RESET",
+            "state": "IDLE"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "action": "request_dock",
+          "accepted": true,
+          "code": "DOCKING_STARTED",
+          "from": "IDLE",
+          "to": "DOCKING"
+        },
+        {
+          "seq": 2,
+          "action": "dock_timeout",
+          "accepted": true,
+          "code": "DOCKING_TIMED_OUT",
+          "from": "DOCKING",
+          "to": "FAULT"
+        },
+        {
+          "seq": 3,
+          "action": "reset_fault",
+          "accepted": true,
+          "code": "FAULT_RESET",
+          "from": "FAULT",
+          "to": "IDLE"
+        }
+      ]
+    }
+  ]
+}

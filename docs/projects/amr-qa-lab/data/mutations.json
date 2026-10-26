@@ -1,0 +1,28 @@
+{
+  "note": "Controlled injected faults; not real product defects",
+  "mutations": [
+    {
+      "mutation": "battery_threshold_21_instead_of_20",
+      "caught": true,
+      "caught_by": [
+        "TC-MIS-01"
+      ]
+    },
+    {
+      "mutation": "estop_release_resumes_mission",
+      "caught": true,
+      "caught_by": [
+        "TC-EST-02"
+      ]
+    },
+    {
+      "mutation": "dock_timeout_reported_as_success",
+      "caught": true,
+      "caught_by": [
+        "TC-DOC-02",
+        "TC-DOC-03",
+        "TC-FLT-01"
+      ]
+    }
+  ]
+}

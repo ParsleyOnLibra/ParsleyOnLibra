@@ -1,0 +1,30 @@
+name: AMR QA regression
+
+on:
+  push:
+    paths:
+      - "projects/amr-qa-lab/**"
+      - ".github/workflows/amr-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-cases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run black-box cases
+        run: python projects/amr-qa-lab/scripts/run_cases.py
+      - name: Check fault detection
+        run: python projects/amr-qa-lab/scripts/check_mutations.py
+      - name: Upload execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: amr-qa-reports
+          path: projects/amr-qa-lab/results/*.json

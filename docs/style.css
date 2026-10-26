@@ -79,7 +79,7 @@ h2 { margin-bottom: 0; color: var(--green); font-size: clamp(2rem, 3.25vw, 3rem)
 .timeline-item h3 { margin: .7rem 0 1rem; color: var(--white); font-size: 1.4rem; font-weight: 700; letter-spacing: -.025em; }
 .timeline-item p { margin-bottom: 0; color: var(--soft-white); font-size: .94rem; word-break: keep-all; }
 
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 .project-card { position: relative; display: flex; flex-direction: column; min-height: 380px; overflow: hidden; padding: clamp(1.6rem, 3vw, 2.5rem); border: 1px solid #e2e6df; background: var(--white); box-shadow: var(--card-shadow); }
 .project-card::before { content: ""; width: 50px; height: 5px; margin-bottom: 1.6rem; border-radius: 4px; background: var(--accent); }
 .project-card.featured { background: #eef5ef; }
@@ -126,6 +126,7 @@ h2 { margin-bottom: 0; color: var(--green); font-size: clamp(2rem, 3.25vw, 3rem)
 
 @media (max-width: 950px) {
   .hero-inner { grid-template-columns: 1fr .8fr; min-height: 550px; }
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-heading { align-items: start; flex-direction: column; gap: .8rem; }
 }
 @media (max-width: 760px) {
