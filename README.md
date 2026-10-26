@@ -25,7 +25,7 @@
 
 ### [부동산·주가 비교 웹 실험](https://github.com/ParsleyOnLibra/property-simulator-portfolio)
 
-부동산과 주가의 흐름을 비교해 보기 위해 만든 개인 웹 프로젝트입니다. 현재 공개 저장소의 설명을 정리하고 있습니다.
+아파트 실거래가가 선택한 날짜의 주식 몇 주에 해당하는지 환산하는 웹 프로젝트입니다. 로컬 Python 버전에는 실제 거래·종가·환율 수집과 관측일 표시를 구현했습니다. [공개 웹 데모](https://parsleyonlibra.github.io/property-simulator-portfolio/)는 가상 예시로 계산 과정을 보여주며, 데이터 제공 조건이 다른 실제 주식 시세를 공개 배포하지 않습니다.
 
 ## 사용해 본 도구와 관심사
 

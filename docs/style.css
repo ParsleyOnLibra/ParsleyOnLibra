@@ -89,6 +89,7 @@ h2 { margin-bottom: 0; color: var(--green); font-size: clamp(2rem, 3.25vw, 3rem)
 .tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: .3rem 0 1.7rem; padding: 0; list-style: none; }
 .tags li { padding: .28rem .7rem; border: 1px solid #bfd6ca; border-radius: 50px; color: var(--house); font-size: .74rem; font-weight: 700; }
 .text-link { width: fit-content; margin-top: auto; color: var(--green); font-size: .92rem; font-weight: 800; text-decoration-thickness: 1px; }
+.project-card .text-link + .text-link { margin-top: .65rem; }
 
 .post-list { display: grid; gap: 1rem; }
 .post-card { display: grid; grid-template-columns: 145px 1fr auto; align-items: center; gap: 1.5rem; min-height: 126px; padding: 1.5rem 1.8rem; background: var(--white); box-shadow: var(--card-shadow); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
