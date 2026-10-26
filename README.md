@@ -1,6 +1,6 @@
-![JongSu Yang — Robot QA, Test Automation, Data Quality](assets/profile-cover.svg)
+![Yang Jongsoo — Robot QA, Test Automation, Data Quality](assets/profile-cover.svg)
 
-# 안녕하세요, 양종수입니다 👋
+# 안녕하세요, 양종수 (Yang Jongsoo)입니다 👋
 
 **로봇 QA · 테스트 자동화 · 데이터 품질**
 

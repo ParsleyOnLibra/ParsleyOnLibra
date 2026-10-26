@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="480" viewBox="0 0 600 480" role="img" aria-labelledby="title desc">
+  <title id="title">Robot QA route illustration</title>
+  <desc id="desc">A small autonomous robot follows a test route while checkpoints and an observation card record the result.</desc>
+  <rect x="20" y="20" width="560" height="440" rx="28" fill="#d4e9e2"/>
+  <circle cx="487" cy="94" r="54" fill="#c7dfd2"/>
+  <circle cx="84" cy="385" r="44" fill="#e8eee7"/>
+  <rect x="62" y="60" width="438" height="345" rx="17" fill="#ffffff" stroke="#d7e2d9"/>
+  <text x="92" y="101" fill="#006241" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">FIELD TEST / 01</text>
+  <path d="M112 330h104v-70h126v-97h108" fill="none" stroke="#00754a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 14"/>
+  <circle cx="112" cy="330" r="14" fill="#ffffff" stroke="#00754a" stroke-width="6"/>
+  <circle cx="216" cy="260" r="14" fill="#ffffff" stroke="#00754a" stroke-width="6"/>
+  <circle cx="342" cy="163" r="14" fill="#ffffff" stroke="#00754a" stroke-width="6"/>
+  <circle cx="450" cy="163" r="16" fill="#00754a"/>
+  <path d="m442 163 6 6 11-13" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(245 260)">
+    <ellipse cx="0" cy="46" rx="58" ry="13" fill="#a4bdb0" opacity=".35"/>
+    <rect x="-50" y="-21" width="100" height="62" rx="20" fill="#1e3932"/>
+    <rect x="-39" y="-37" width="78" height="45" rx="13" fill="#2b5148"/>
+    <rect x="-27" y="-24" width="54" height="16" rx="7" fill="#c5e5d3"/>
+    <circle cx="-31" cy="41" r="10" fill="#172b25"/>
+    <circle cx="31" cy="41" r="10" fill="#172b25"/>
+    <circle cx="0" cy="-36" r="4" fill="#a8d7bd"/>
+  </g>
+  <rect x="370" y="313" width="170" height="107" rx="15" fill="#1e3932"/>
+  <circle cx="396" cy="340" r="7" fill="#b8dfca"/>
+  <text x="413" y="345" fill="#ffffff" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1">OBSERVE</text>
+  <path d="M394 370h119M394 388h89" stroke="#bdd8c8" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+  <rect x="95" y="130" width="94" height="38" rx="19" fill="#f2f0eb"/>
+  <text x="111" y="155" fill="#006241" font-family="Arial, sans-serif" font-size="12" font-weight="700">RUN  08</text>
+</svg>
