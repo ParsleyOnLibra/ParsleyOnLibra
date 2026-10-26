@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="수면 단계 분류 정확도 95.42%의 뒤에 남은 N1 오류, 입력 품질, 전환 탐지의 한계를 살펴봅니다.">
+  <meta name="theme-color" content="#103d35">
+  <title>정확도 95.42%로도 안심할 수 없었던 이유 | 양종수</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="../">JONGSU<span>.</span>YANG</a><nav class="nav" aria-label="주 메뉴"><a href="../#about">소개</a><a href="../#projects">프로젝트</a><a href="../#writing">기록</a></nav></div></header>
+  <main id="main">
+    <header class="article-header"><div class="shell"><p class="meta">DATA QUALITY / RESEARCH NOTE</p><h1>정확도 95.42%로도<br>안심할 수 없었던 이유</h1><p>전체 수치가 높아도 관심 있는 순간을 놓칠 수 있습니다. 공개 수면 데이터를 분석하며 확인한 오류와 한계를 정리했습니다.</p></div></header>
+    <article class="article-body">
+      <p>수면 단계 분류 프로젝트에서 공개 Sleep-EDF 데이터를 사용했습니다. 선택한 모델은 품질 검사를 통과한 평가 참가자 2명의 4,275구간에서 Accuracy 95.42%, Macro F1 85.98%를 기록했습니다. 처음에는 꽤 좋아 보이는 숫자였습니다.</p>
+      <h2>N1 단계는 다른 이야기였다</h2>
+      <p>실제 N1인 100구간 중 72구간을 맞혔지만, N1으로 예측한 164구간 중 92구간은 다른 단계였습니다. 그중 83구간은 깨어 있는 상태인 Wake였습니다. 전체 정확도만 보면 이 오류는 잘 보이지 않습니다.</p>
+      <p>잠들기 시작하는 전환을 따로 보면 한계가 더 분명해집니다. 정의한 기준 사건 20건 중 4건만 탐지했습니다. 그래서 이 결과를 안정적인 수면 진입 감지 기능으로 설명하지 않습니다.</p>
+      <h2>평가에서 빠진 데이터도 결과의 일부다</h2>
+      <p>평가 대상 5,492구간 중 4,275구간이 품질 검사를 통과했습니다. 제외된 구간은 정확도 계산의 분모에 들어가지 않습니다. 어떤 신호가 빠졌는지 공개하고, 숫자 기반 품질 지표를 원본 파형과 대조했습니다.</p>
+      <blockquote>좋은 성능 수치만큼, 어떤 데이터에서 그 수치를 얻었는지가 중요합니다.</blockquote>
+      <h2>다음에 확인할 것</h2>
+      <p>입력 품질 기준을 바꾸거나 모델을 개선한다면 새로운 독립 평가가 필요합니다. 이번 분석에 이미 사용한 평가 참가자를 개선 결과의 최종 검증에 다시 쓰지 않으려 합니다. Apple Watch의 개인 수면 기록과 EEG 단계 분류를 연결하는 일도 아직 별도의 과제입니다.</p>
+      <p class="note">실험 설계, 지표, 파형 확인 과정은 <a href="https://github.com/ParsleyOnLibra/sleep-ai-project">Sleep AI 공개 저장소</a>에 정리했습니다. 이 프로젝트는 임상 진단이나 실시간 수면 서비스가 아닙니다.</p>
+      <a class="back-link" href="../#writing">← 글 목록으로 돌아가기</a>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>© 2026 양종수</p><p>Observe · Verify · Improve</p></div></footer>
+</body>
+</html>
