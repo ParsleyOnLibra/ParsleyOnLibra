@@ -31,6 +31,10 @@
 
 가상 AMR 관제 요구사항을 결정표·경계값·상태 전이로 분석해 20개 테스트케이스를 설계했습니다. 실행 결과 20/20 통과와 통제된 오류 주입 3/3 검출을 공개합니다. 오류 주입 중 발견한 테스트케이스 사전 조건의 결함도 재현·수정 기록으로 남겼습니다. 실제 제품의 테스트 결과는 아닙니다. [테스트 문서와 코드](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/amr-qa-lab)
 
+### [ROS 2 학습 기록 — AMR QA 관점](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning)
+
+AMR QA 경험을 바탕으로 노드·토픽·서비스·액션과 로봇 데이터 흐름을 공부하기 시작했습니다. 개념 노트부터 실습 코드, 실행 증거, 테스트케이스와 문제 해결 기록을 순차적으로 공개합니다. 현재는 기본 개념 정리 단계이며 설치·실행 검증은 아직 진행하지 않았습니다.
+
 ## 사용해 본 도구와 관심사
 
 `Python` · `Selenium` · `Jira` · `Confluence` · `Linux / Ubuntu` · `AMR 테스트` · `데이터 품질 검증`
