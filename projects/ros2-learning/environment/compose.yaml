@@ -1,0 +1,12 @@
+services:
+  amr_ros:
+    build: .
+    image: amr-ros2-jazzy:local
+    platform: linux/arm64
+    init: true
+    shm_size: 512m
+    ports:
+      - "127.0.0.1:6080:6080"
+    volumes:
+      - ../:/workspace
+    working_dir: /workspace
