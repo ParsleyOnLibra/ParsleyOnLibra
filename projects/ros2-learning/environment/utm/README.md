@@ -15,10 +15,13 @@
 
 ## Ubuntu에서 ROS 2 설치
 
-이 저장소를 Ubuntu VM에 복사하거나 공개 저장소에서 내려받은 다음, Ubuntu 터미널에서 실행합니다. `sudo`가 요구하는 비밀번호는 UTM의 Ubuntu 창에 직접 입력합니다.
+Ubuntu 터미널에서 아래처럼 공개된 스크립트를 내려받고 내용을 확인한 뒤 실행합니다. `sudo`가 요구하는 비밀번호는 UTM의 Ubuntu 창에 직접 입력합니다.
 
 ```bash
-bash projects/ros2-learning/environment/utm/install-jazzy.sh
+sudo apt update && sudo apt install -y curl
+curl -fL --retry 3 -o "$HOME/install-jazzy.sh" https://raw.githubusercontent.com/ParsleyOnLibra/ParsleyOnLibra/main/projects/ros2-learning/environment/utm/install-jazzy.sh
+less "$HOME/install-jazzy.sh"
+bash "$HOME/install-jazzy.sh"
 ```
 
 스크립트는 Ubuntu 24.04 ARM64 여부를 확인하고 공식 ROS apt 소스를 등록한 뒤 ROS 2 Jazzy Desktop, RViz, Nav2, SLAM Toolbox, Gazebo 연동 패키지와 UTM 게스트 도구를 설치합니다. 패키지 설치 뒤 아래 명령으로 RViz 앱 실행 여부를 확인합니다.
