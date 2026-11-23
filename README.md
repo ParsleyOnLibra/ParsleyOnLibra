@@ -31,14 +31,9 @@
 
 가상 AMR 관제 요구사항을 결정표·경계값·상태 전이로 분석해 20개 테스트케이스를 설계했습니다. 실행 결과 20/20 통과와 통제된 오류 주입 3/3 검출을 공개합니다. 오류 주입 중 발견한 테스트케이스 사전 조건의 결함도 재현·수정 기록으로 남겼습니다. 실제 제품의 테스트 결과는 아닙니다. [테스트 문서와 코드](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/amr-qa-lab)
 
+### [ROS 2 학습 기록 — AMR QA 관점](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning)
 
-### [AI 보조 리워드 광고 QA 개인 실습](https://parsleyonlibra.github.io/ParsleyOnLibra/projects/reward-ad-qa-lab/)
-
-가상 광고 흐름의 요구사항에서 Codex로 테스트 후보를 제안받고 명세와 대조했습니다. 12개 케이스·59단계를 Python으로 자동 실행했고, 의도적으로 넣은 중복 보상 결함을 TC-08에서 검출했습니다. 실제 광고 SDK나 회사 제품 검증 결과는 아닙니다. [가상 명세와 코드](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/reward-ad-qa-lab)
-
-### [ROS 2 가상 AMR 통신·주행 QA](https://parsleyonlibra.github.io/ParsleyOnLibra/projects/ros2-learning/)
-
-Docker의 가상 TurtleBot3에서 SLAM 부분 지도 저장과 Nav2 목표 주행을 확인했습니다. ROS 2 Jazzy 배터리 토픽 패키지에서는 19·20% 경계, 잘못된 값, 메시지 중단·복구, 가상 AMR 연계를 구현하고 [CI 7개 테스트 통과](https://github.com/ParsleyOnLibra/ParsleyOnLibra/actions/runs/45151500094)로 확인했습니다. 실제 로봇 검증 결과는 아닙니다. [코드와 실행 기록](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning)
+AMR QA 경험을 바탕으로 노드·토픽·서비스·액션과 로봇 데이터 흐름을 공부하기 시작했습니다. 개념 노트부터 실습 코드, 실행 증거, 테스트케이스와 문제 해결 기록을 순차적으로 공개합니다. 현재는 기본 개념 정리 단계이며 설치·실행 검증은 아직 진행하지 않았습니다.
 
 ## 사용해 본 도구와 관심사
 
