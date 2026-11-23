@@ -14,16 +14,13 @@ jobs:
       image: ros:jazzy-ros-base
     steps:
       - uses: actions/checkout@v4
-      - name: Install ROS 2 build dependencies
-        run: |
-          apt-get update
-          apt-get install -y --no-install-recommends python3-colcon-common-extensions ros-jazzy-std-msgs
       - name: Build package and run battery QA cases
         shell: bash
         run: |
-          set -euo pipefail
+          set -eo pipefail
           source /opt/ros/jazzy/setup.bash
           cd projects/ros2-learning
           colcon build --packages-select battery_qa
           source install/setup.bash
+          ros2 pkg executables battery_qa
           python3 -m unittest discover -s tests -v
