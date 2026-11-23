@@ -17,12 +17,13 @@
 8. 설치 후 `df -h /`은 34GB 중 14GB 사용, 약 18GB 여유(44%)를 표시했습니다. `free -h`는 메모리 3.8GiB 중 약 2.3GiB를 사용 가능으로 표시했습니다.
 9. `ros2 launch nav2_bringup tb3_simulation_launch.py --show-args`에서 기본값 `headless=True`, `slam=False`를 확인했습니다. 기본 설정으로 예제 실행을 시도하자 Gazebo(`gz`), 로봇 생성(`create`), Nav2 컨테이너, RViz 프로세스가 시작됐습니다. `/map`, `/scan`, `/odom`, `/tf`, `/plan` 등의 토픽 이름을 `ros2 topic list`에서 확인했고 `/odom`과 `/clock`은 각각 발행자 1개로 나타났습니다.
 10. 하지만 예제 RViz에 `Global Status: Error`가 표시됐고 Nav2 로그가 `map`/`odom` 프레임 변환을 계속 기다렸습니다. `timeout 12 ros2 topic echo /odom --once`에서는 메시지를 받지 못했습니다. 기본 예제의 로봇 위치·주행은 검증하지 못해 `Ctrl+C`로 종료했습니다. 종료 과정에서 응답하지 않은 Nav2·RViz 프로세스는 런처가 `SIGKILL`로 정리했습니다. 기본 예제는 SLAM이 꺼져 있으므로 이번 시도는 새 지도 작성 검증도 아닙니다.
+11. 별도 터미널에서 최소 월드 `gz sim -s -r empty.sdf`도 실행했습니다. 출력이 나타나지 않는 동안 VM의 터미널 입력과 화면 반응이 크게 지연됐습니다. 해당 진단용 터미널을 닫아 실행 중인 프로세스를 종료한 뒤 다른 터미널의 셸 프롬프트를 확인했습니다. 이 시도만으로 지연의 원인이나 Gazebo 정상 동작 여부는 확인할 수 없었습니다.
 
 ## 검증 상태
 
 - Ubuntu VM의 네트워크 연결, `curl` 다운로드, 공식 ROS apt 저장소 등록: **확인**
 - ROS 2 Jazzy와 RViz·Nav2·SLAM Toolbox 패키지 설치, RViz 데스크톱 창 실행: **확인**
 - 기본 TurtleBot3 예제의 프로세스 시작과 토픽 이름: **확인**. 실제 `/odom` 메시지, 유효한 TF, 로봇 주행: **미확인**
-- 이 UTM VM에서의 SLAM 지도 작성·저장과 Nav2 목표 주행: **미검증**. Gazebo 시계·센서 메시지와 VM 자원 사용을 추가 진단해야 합니다.
+- 이 UTM VM에서의 SLAM 지도 작성·저장과 Nav2 목표 주행: **미검증**. 최소 Gazebo 실행 중 입력 지연도 관찰했으며 Gazebo 시계·센서 메시지와 VM 자원 사용을 추가 진단해야 합니다.
 
 `sudo` 비밀번호는 사용자가 UTM 창에 직접 입력했습니다. 이 기록에는 비밀번호를 저장하지 않습니다.
