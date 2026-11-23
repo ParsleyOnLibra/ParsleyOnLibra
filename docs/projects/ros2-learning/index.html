@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="기존 ROS 2 실습 기록과 Codex가 작성한 배터리 토픽 QA 공개 초안의 증거를 구분해 보여줍니다.">
+  <title>ROS 2 가상 AMR 통신·주행 QA | Jongsoo Yang</title>
+  <link rel="stylesheet" href="../amr-qa-lab/style.css">
+  <link rel="stylesheet" href="../reward-ad-qa-lab/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로가기</a>
+  <header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html">JS / JONGSOO YANG</a><a href="../../index.html#projects">포트폴리오로 돌아가기 ↗</a></div></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">ROS 2 JAZZY / BATTERY QA CODEX DRAFT</p>
+      <h1 id="title">가상 AMR의 데이터 흐름을<br>검증 가능한 기록으로</h1>
+      <p class="lead">기존 Docker 가상 TurtleBot3의 SLAM·Nav2 기록과 Codex가 만든 배터리 토픽 QA 패키지·CI 결과를 구분해 공개합니다.</p>
+      <p class="scope">배터리 QA의 종수님 직접 검토·재현은 아직 확인되지 않았습니다. 실제 로봇 또는 회사 제품의 성능·안전성 검증이 아닙니다.</p>
+      <div class="hero-links"><a class="button" href="../../qa/ros2-learning.html">QA 8단계 작업 기록 ↗</a><a class="quiet-link" href="https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning">코드·명세·증거 보기 ↗</a></div>
+    </section>
+
+    <section class="summary" aria-label="확인한 결과 요약">
+      <div class="metric"><span>ROS 2 CI 테스트</span><strong>7 / 7</strong><small>Jazzy 컨테이너, 건너뛰기 0개</small></div>
+      <div class="metric"><span>SLAM 지도</span><strong>111 × 102</strong><small>0.05m 해상도의 부분 지도</small></div>
+      <div class="metric"><span>Nav2 목표</span><strong>성공</strong><small>가상 세계의 (0.5, 0.0) 목표</small></div>
+    </section>
+
+    <section class="method" aria-labelledby="method-title"><div><p class="eyebrow">EVIDENCE FIRST</p><h2 id="method-title">실행 환경과 결과를 분리해 기록</h2></div><p>2026-11-18 Apple Silicon Docker에서 Gazebo·Nav2·SLAM Toolbox·RViz를 실행했고 `/map`·`/scan`·`/odom`·`/tf`·`/plan`을 관찰했습니다. 2026-11-23에는 GitHub Actions의 ROS 2 Jazzy 컨테이너에서 배터리 패키지를 빌드하고 실제 `rclpy` 발행·구독 테스트까지 통과했습니다. [환경 실행 기록 ↗](https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/ros2-learning/evidence/2026-11-18-environment.md) · [배터리 QA 실행 기록 ↗](https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/ros2-learning/evidence/2026-11-23-battery-qa.md)</p></section>
+
+    <section class="visual" aria-labelledby="visual-title"><div class="section-head"><div><p class="eyebrow">VISUAL EVIDENCE</p><h2 id="visual-title">부분 지도와 RViz 화면</h2></div><p>시작점 주변의 일부만 저장했습니다. 짧은 이동 전후 지도의 SHA-1이 같아 지도 범위 확장을 증명하지는 못했습니다.</p></div><figure><img src="https://raw.githubusercontent.com/ParsleyOnLibra/ParsleyOnLibra/main/projects/ros2-learning/evidence/rviz-slam.png" alt="가상 TurtleBot3의 부분 지도와 RViz 실행 화면" loading="lazy"><figcaption>2026-11-18 Docker 환경의 RViz 캡처. <a href="https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning/evidence">원본 지도·기록 보기 ↗</a></figcaption></figure></section>
+
+    <section class="risk" aria-labelledby="risk-title"><div class="section-head"><div><p class="eyebrow">COMMUNICATION QA</p><h2 id="risk-title">배터리 토픽에서 검증한 위험</h2></div></div><div class="risk-grid">
+      <article><h3>경계값</h3><p>19%는 `LOW`, 20%는 `NORMAL`로 처리합니다. 유효 값만 가상 AMR에 전달해 미션 승인·거부 경계를 확인했습니다.</p><span>B-01, B-05</span></article>
+      <article><h3>잘못된 입력</h3><p>-1·101 같은 값은 `INVALID`로 보고하며 마지막 유효 값을 덮어쓰지 않습니다.</p><span>B-02</span></article>
+      <article><h3>중단과 복구</h3><p>유효 메시지가 끊기면 `STALE`을 보고하고, 새 유효 값이 오면 상태를 복구합니다.</p><span>B-03, B-04</span></article>
+    </div></section>
+
+    <section class="finding" aria-labelledby="finding-title"><div><p class="eyebrow">FOUND & FIXED</p><h2 id="finding-title">CI 환경 설정 오류도 원인과 함께 남겼습니다</h2></div><p>첫 실행은 ROS 환경 설정 전 셸의 `set -u` 때문에 테스트 시작 전에 실패했습니다. 로그의 `AMENT_TRACE_SETUP_FILES: unbound variable`을 확인하고 설정 순서를 고쳐 재실행했습니다. 이후 패키지 빌드, 실행 명령 등록, 7개 테스트가 통과했습니다. <a href="https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/ros2-learning/evidence/2026-11-23-battery-qa.md">실패·수정·재실행 근거 ↗</a></p></section>
+
+    <section class="limits" aria-labelledby="limits-title"><p class="eyebrow">SCOPE & LIMITS</p><h2 id="limits-title">확인하지 않은 범위</h2><p>UTM Ubuntu VM의 네이티브 RViz 실행, 실제 배터리 센서, 무선 통신, 장애물 회피·도킹, 실물 로봇은 검증하지 않았습니다. 지도는 부분 지도이며 동일한 PGM 파일만으로 탐색 범위가 늘었다고 주장하지 않습니다. 사용자의 별도 직접 실행·이해도 답변은 아직 기록되지 않았습니다.</p></section>
+    <footer>기존 ROS 2 실습 기록 + Codex 배터리 QA 공개 초안 · 모든 수치는 연결된 실행 증거의 범위에서만 해석합니다.</footer>
+  </main>
+</body>
+</html>

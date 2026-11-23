@@ -19,6 +19,8 @@
 
 ## 공개 프로젝트
 
+각 프로젝트의 계획·모니터링·통제·분석·설계·구현·실행·완료 기록: [수면](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/sleep-ai.html) · [부동산](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/property.html) · [AMR](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/amr-qa.html) · [ROS 2](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/ros2-learning.html) · [리워드 광고 QA 초안](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/reward-ad-qa.html). 단계별 사용자 판단과 직접 실행은 확인된 범위만 표시합니다.
+
 아래 자료에는 AI 도구가 작성한 코드와 문서가 포함되어 있습니다. 직접 수행·이해·재현한 범위를 확인 중이며, 확인되지 않은 결과는 본인 경험으로 소개하지 않습니다.
 
 ### [Sleep AI — 수면 단계 분류와 신호 품질 검증](https://github.com/ParsleyOnLibra/sleep-ai-project)
@@ -35,7 +37,11 @@
 
 ### [ROS 2 학습 기록 — AMR QA 관점](https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/ros2-learning)
 
-AMR QA 경험을 바탕으로 노드·토픽·서비스·액션과 로봇 데이터 흐름을 공부하기 시작했습니다. 개념 노트부터 실습 코드, 실행 증거, 테스트케이스와 문제 해결 기록을 순차적으로 공개합니다. 현재는 기본 개념 정리 단계이며 설치·실행 검증은 아직 진행하지 않았습니다.
+AMR QA 경험을 바탕으로 노드·토픽·서비스·액션과 로봇 데이터 흐름을 공부하기 시작했습니다. 개념 노트부터 실습 코드, 실행 증거, 테스트케이스와 문제 해결 기록을 순차적으로 공개합니다. 기존 Docker 지도·주행 실행 기록이 있으며, 배터리 토픽 QA 패키지와 CI 결과는 Codex가 작성·실행한 사용자 검토 전 초안입니다.
+
+### [리워드 광고 흐름 AI 보조 QA 공개 초안](https://parsleyonlibra.github.io/ParsleyOnLibra/qa/reward-ad-qa.html)
+
+Codex가 만든 가상 명세·코드·실행 결과를 공개합니다. 종수님이 직접 검토·재현한 업무 성과로 표시하지 않으며, 실제 버즈빌 제품 검증이 아닙니다.
 
 ## 사용해 본 도구와 관심사
 

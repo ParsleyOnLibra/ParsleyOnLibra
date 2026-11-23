@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Codex가 작성·실행한 가상 리워드 광고 QA 공개 초안. 사용자 직접 검토와 재현은 진행 전입니다.">
+  <title>리워드 광고 QA 공개 초안 | Jongsoo Yang</title>
+  <link rel="stylesheet" href="../amr-qa-lab/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로가기</a>
+  <header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html">JS / JONGSOO YANG</a><a href="../../index.html#projects">포트폴리오로 돌아가기 ↗</a></div></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">CODEX DRAFT / USER REVIEW PENDING</p>
+      <h1 id="title">리워드 광고 흐름<br>AI 보조 QA 실습</h1>
+      <p class="lead">Codex가 가상 광고 흐름의 명세·테스트 후보·회귀 테스트를 작성하고 실행했습니다. 이 페이지는 그 결과를 확인하기 위한 공개 초안입니다.</p>
+      <p class="scope">종수님의 직접 검토·재현은 아직 확인되지 않았습니다. 실제 버즈빌 제품이나 광고 SDK를 검증한 결과도, 기존 회사에서 AI를 사용한 업무 성과도 아닙니다.</p>
+      <div class="hero-links"><a class="button" href="../../qa/reward-ad-qa.html">QA 8단계 작업 기록 ↗</a><a class="quiet-link" href="https://github.com/ParsleyOnLibra/ParsleyOnLibra/tree/main/projects/reward-ad-qa-lab">가상 명세·코드·원본 결과 ↗</a></div>
+    </section>
+
+    <section class="summary" aria-label="실습 결과 요약">
+      <div class="metric"><span>AI 후보 검토</span><strong>14 → 12</strong><small>명세에 없는 후보 2개 보류</small></div>
+      <div class="metric"><span>기본 구현 회귀 테스트</span><strong id="passed">—</strong><small id="steps">저장된 결과를 불러오는 중</small></div>
+      <div class="metric"><span>결함 주입 검출</span><strong id="mutations">—</strong><small>중복 보상 결함, TC-08</small></div>
+    </section>
+
+    <section class="method" aria-labelledby="method-title">
+      <div><p class="eyebrow">AI + HUMAN CHECK</p><h2 id="method-title">후보를 명세에 맞춰 고르기</h2></div>
+      <p>AI가 제안한 14개 중 12개를 가상 요구사항 R-01~R-05와 연결했습니다. “정확히 세 번 재시도”는 횟수 근거가 없고, “앱 백그라운드 복귀”는 이 시뮬레이터에 앱 상태가 없어 보류했습니다. 현재 후보 검토와 실행은 Codex가 수행했으며 사용자의 직접 검토·실행은 아직 확인되지 않았습니다.</p>
+    </section>
+
+    <section class="risk" aria-labelledby="risk-title">
+      <div class="section-head"><div><p class="eyebrow">RISK-BASED CASES</p><h2 id="risk-title">무엇을 확인했나</h2></div></div>
+      <div class="risk-grid">
+        <article><h3>중복 보상</h3><p>같은 거래 ID의 완료 콜백을 두 번 보내고 실제 보상 기록 횟수가 한 번인지 확인했습니다.</p><span>TC-08 · R-03</span></article>
+        <article><h3>오프라인 복구</h3><p>오프라인에서 완료한 뒤 광고를 닫고 재연결해 대기 보상이 한 번만 기록되는지 확인했습니다.</p><span>TC-09, TC-11 · R-04, R-05</span></article>
+        <article><h3>동의 철회</h3><p>광고를 로드한 뒤 동의를 거부로 바꾸면 로드가 무효화되고 노출이 거부되는지 확인했습니다.</p><span>TC-04 · R-01</span></article>
+      </div>
+    </section>
+
+    <section class="cases" aria-labelledby="case-title">
+      <div class="section-head"><div><p class="eyebrow">EXECUTION EVIDENCE</p><h2 id="case-title">기대 결과와 실제 결과</h2></div><p>케이스를 선택하면 명령별 코드·상태와 최종 보상 기록을 볼 수 있습니다.</p></div>
+      <div class="case-layout">
+        <div class="case-panel"><label class="search-label" for="search">케이스 검색</label><input id="search" type="search" placeholder="ID, 제목, 요구사항 검색"><div id="case-list" class="case-list" aria-label="테스트케이스 목록"><p>저장된 결과를 불러오는 중입니다…</p></div></div>
+        <article id="case-detail" class="detail" aria-live="polite"><p>케이스를 선택해 주세요.</p></article>
+      </div>
+    </section>
+
+    <section class="finding" aria-labelledby="finding-title"><div><p class="eyebrow">CONTROLLED FAULT</p><h2 id="finding-title">중복 보상 결함을 넣어 검출력을 확인</h2></div><p id="mutation-detail">결함 주입 보고서를 불러오는 중입니다…</p></section>
+
+    <section class="limits" aria-labelledby="limits-title"><p class="eyebrow">SCOPE & LIMITS</p><h2 id="limits-title">이 결과가 뜻하는 범위</h2><p>12/12 통과는 직접 만든 가상 상태 시뮬레이터와 테스트 기대값의 일치입니다. 앱 UI, Android/iOS SDK, 서버 보상 지급, 광고 네트워크, 크래시·ANR은 확인하지 않았습니다. 사람의 작업 시간 단축률도 측정하지 않았으므로 생산성 향상 비율로 제시하지 않습니다.</p></section>
+    <noscript><p>JavaScript를 켜면 케이스별 결과를 볼 수 있습니다. 원본 결과는 <a href="data/latest.json">기본 실행 JSON</a>과 <a href="data/mutation.json">결함 주입 JSON</a>에서 확인할 수 있습니다.</p></noscript>
+    <footer>Codex 작성·실행 공개 초안 · 사용자 검토 전 · 저장된 가상 시뮬레이터 결과입니다.</footer>
+  </main>
+</body>
+</html>
