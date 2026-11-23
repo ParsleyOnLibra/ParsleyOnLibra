@@ -11,7 +11,8 @@ AMR QA 경험을 바탕으로 로봇 내부의 데이터 흐름을 관찰하고 
 - [001 · ROS 2 기본 개념과 AMR QA](notes/001-concepts.md): 개념 설명, 확인 질문과 참고 답안. 사용자의 직접 답변은 아직 기록되지 않았습니다.
 - [실습 기록 양식](templates/lab-record.md)
 - [Apple Silicon Docker 실행 환경](environment/README.md): ROS 2 Jazzy, Gazebo, Nav2, SLAM Toolbox, RViz 실행 절차
-- [UTM Ubuntu 데스크톱 실행 환경](environment/utm/README.md): 별도 환경의 설정 초안. UTM에서의 실행은 확인하지 않았습니다.
+- [UTM Ubuntu 데스크톱 실행 환경](environment/utm/README.md): 설치 절차와 현재 진행 상태. ROS 2 실행은 확인하지 않았습니다.
+- [2026-11-23 UTM 설치 기록](evidence/2026-11-23-utm-install.md): Ubuntu 설치 단계와 멈춘 화면, 부팅·ROS 2 미확인 상태
 - [Windows PC 독립 실행 환경](environment/windows-vm/README.md): Ubuntu AMD64 VM 절차와 ROS 2 설치 스크립트 작성. Windows 실행 검증 전
 - [2026-11-23 Windows 준비 기록](evidence/2026-11-23-windows-vm-prep.md): 작성·문법 확인과 미검증 항목 구분
 - [2026-11-18 실행 증거](evidence/2026-11-18-environment.md): 부분 지도 생성·저장과 목표 주행 결과
