@@ -32,6 +32,8 @@ if ! grep -Fqx 'source /opt/ros/jazzy/setup.bash' "$HOME/.bashrc"; then
   printf '\nsource /opt/ros/jazzy/setup.bash\n' >> "$HOME/.bashrc"
 fi
 
+# ROS setup files may reference unset environment variables.
+set +u
 source /opt/ros/jazzy/setup.bash
 ros2 pkg prefix rviz2
 ros2 pkg prefix nav2_bringup
