@@ -12,6 +12,8 @@ AMR QA 경험을 바탕으로 로봇 내부의 데이터 흐름을 관찰하고 
 - [실습 기록 양식](templates/lab-record.md)
 - [Apple Silicon Docker 실행 환경](environment/README.md): ROS 2 Jazzy, Gazebo, Nav2, SLAM Toolbox, RViz 실행 절차
 - [UTM Ubuntu 데스크톱 실행 환경](environment/utm/README.md): 별도 환경의 설정 초안. UTM에서의 실행은 확인하지 않았습니다.
+- [Windows PC 독립 실행 환경](environment/windows-vm/README.md): Ubuntu AMD64 VM 절차와 ROS 2 설치 스크립트 작성. Windows 실행 검증 전
+- [2026-11-23 Windows 준비 기록](evidence/2026-11-23-windows-vm-prep.md): 작성·문법 확인과 미검증 항목 구분
 - [2026-11-18 실행 증거](evidence/2026-11-18-environment.md): 부분 지도 생성·저장과 목표 주행 결과
 - [배터리 토픽 QA 명세·케이스](docs/BATTERY_QA.md): 20% 경계, 입력 오류, 메시지 중단·복구, 가상 AMR 연계
 - [2026-11-23 배터리 QA 실행 증거](evidence/2026-11-23-battery-qa.md): ROS 2 Jazzy CI의 패키지 빌드·7개 테스트 통과와 로그
@@ -56,4 +58,4 @@ python3 -m unittest discover -s tests -v
 
 현재 실습 배포판은 ROS 2 Jazzy이며 Apple Silicon macOS의 ARM64 Ubuntu 24.04 Docker 컨테이너에서 실행했습니다. 지도는 시작점 주변의 부분 지도입니다.
 
-배터리 패키지와 테스트는 2026-11-23 Codex가 작성했고 GitHub Actions의 ROS 2 컨테이너에서 검증했습니다. 사용자가 별도로 직접 실행하거나 이해도 질문에 답한 기록은 아직 없습니다. UTM VM, 실제 배터리 센서, 장애물 회피·도킹과 실물 로봇 검증은 이 포트폴리오 범위에 포함하지 않습니다.
+배터리 패키지와 테스트는 2026-11-23 Codex가 작성했고 GitHub Actions의 ROS 2 컨테이너에서 검증했습니다. 사용자가 별도로 직접 실행하거나 이해도 질문에 답한 기록은 아직 없습니다. UTM·Windows VM의 ROS 2 실행, 실제 배터리 센서, 장애물 회피·도킹과 실물 로봇 검증은 아직 수행하지 않았습니다.
