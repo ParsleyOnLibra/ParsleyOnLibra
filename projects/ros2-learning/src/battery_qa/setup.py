@@ -15,7 +15,7 @@ setup(
     maintainer="Jongsoo Yang",
     maintainer_email="noreply@example.com",
     description="Fictional ROS 2 battery topic QA exercise",
-    license="MIT",
+    license="All rights reserved",
     entry_points={
         "console_scripts": [
             "battery_publisher = battery_qa.battery_nodes:publisher_main",

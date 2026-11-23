@@ -4,7 +4,7 @@
   <version>0.1.0</version>
   <description>Fictional ROS 2 battery topic QA exercise for an AMR portfolio.</description>
   <maintainer email="noreply@example.com">Jongsoo Yang</maintainer>
-  <license>MIT</license>
+  <license>All rights reserved</license>
   <buildtool_depend>ament_python</buildtool_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
