@@ -1,6 +1,6 @@
 # UTM의 Ubuntu 데스크톱에서 ROS 2 실행
 
-상태: 설치 절차 작성. UTM 게스트에서 ROS 2 패키지 설치와 RViz 실행은 아직 검증 전입니다.
+상태: Ubuntu 설치기가 시스템 설정 단계까지 진행했으나 완료·부팅은 확인되지 않았습니다. [실제 관찰 기록](../../evidence/2026-11-23-utm-install.md)을 참고하세요. UTM 게스트에서 ROS 2 패키지 설치와 RViz 실행은 아직 검증 전입니다.
 
 이 경로는 Apple Silicon Mac의 UTM 가상 머신 안에서 Ubuntu 24.04 ARM64와 RViz 앱을 직접 실행합니다. Gazebo의 시뮬레이션 서버는 화면 없이 실행해 8GB Mac의 그래픽·메모리 부담을 줄입니다. 지도 작성에는 SLAM Toolbox, 목표 주행에는 Nav2를 사용합니다.
 
@@ -9,7 +9,7 @@
 - UTM의 `Linux` VM: CPU 4개, 메모리 4GB, 새 가상 디스크 35GB
 - Ubuntu 24.04.4 Desktop ARM64 설치 이미지
 - 설치 중 계정 이름 `Jongsoo Yang`, 컴퓨터 이름 `amr-ros2`, 사용자 이름 `yang` 입력
-- Ubuntu 설치와 로그인은 아직 완료 전. 비밀번호는 사용자가 UTM 창에 직접 설정합니다.
+- Ubuntu 계정 비밀번호는 사용자가 UTM 창에 직접 설정했습니다. 설치 완료와 로그인은 아직 확인 전입니다.
 
 가상 디스크를 초기화하는 선택은 **새로 만든 35GB VM 디스크에만** 적용됩니다. Mac 디스크에는 적용되지 않습니다. Ubuntu 설치 후 UTM에서 설치 ISO를 꺼내고 VM을 재시작합니다.
 
