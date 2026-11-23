@@ -1,0 +1,1573 @@
+{
+  "sut": "fictional reward-ad state simulator",
+  "mutation": true,
+  "total": 12,
+  "passed": 11,
+  "failed": 1,
+  "steps": 59,
+  "duration_seconds": 0.000151,
+  "requirements_covered": [
+    "R-01",
+    "R-02",
+    "R-03",
+    "R-04",
+    "R-05"
+  ],
+  "cases": [
+    {
+      "id": "TC-01",
+      "requirements": [
+        "R-01",
+        "R-02"
+      ],
+      "title": "초기화·동의 후 광고 노출",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "SHOWING",
+        "impressions": 1,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-02",
+      "requirements": [
+        "R-01"
+      ],
+      "title": "초기화 전 로드 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": false,
+            "code": "NOT_INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "NOT_INITIALIZED",
+            "state": "EMPTY"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "EMPTY",
+        "impressions": 0,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "load",
+          "code": "NOT_INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-03",
+      "requirements": [
+        "R-01"
+      ],
+      "title": "동의 거부 시 로드 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "DENIED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": false,
+            "code": "CONSENT_REQUIRED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "CONSENT_REQUIRED",
+            "state": "EMPTY"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "EMPTY",
+        "impressions": 0,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "CONSENT_REQUIRED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-04",
+      "requirements": [
+        "R-01"
+      ],
+      "title": "로드 후 동의 철회 시 광고 무효화",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "DENIED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "EMPTY",
+        "impressions": 0,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "LOADED",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "show",
+          "code": "INVALID_STATE",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-05",
+      "requirements": [
+        "R-02"
+      ],
+      "title": "오프라인 로드 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "disconnect",
+            "value": null,
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": false,
+            "code": "NETWORK_UNAVAILABLE",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "NETWORK_UNAVAILABLE",
+            "state": "EMPTY"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "EMPTY",
+        "impressions": 0,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "disconnect",
+          "code": "OFFLINE",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "load",
+          "code": "NETWORK_UNAVAILABLE",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-06",
+      "requirements": [
+        "R-02"
+      ],
+      "title": "로드 전 노출과 중복 노출 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "SHOWING"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "SHOWING",
+        "impressions": 1,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "show",
+          "code": "INVALID_STATE",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 6,
+          "action": "show",
+          "code": "INVALID_STATE",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-07",
+      "requirements": [
+        "R-03"
+      ],
+      "title": "노출 전 완료 콜백 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-7",
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "EMPTY"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "EMPTY",
+        "impressions": 0,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "complete",
+          "code": "INVALID_STATE",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": "tx-7"
+        }
+      ]
+    },
+    {
+      "id": "TC-08",
+      "requirements": [
+        "R-03"
+      ],
+      "title": "정상 보상과 중복 콜백 차단",
+      "status": "FAIL",
+      "failures": [
+        "final credit_events: expected ['tx-8'], got ['tx-8', 'tx-8']"
+      ],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-8",
+            "accepted": true,
+            "code": "REWARD_CREDITED",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "REWARD_CREDITED",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-8",
+            "accepted": false,
+            "code": "DUPLICATE_IGNORED",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "DUPLICATE_IGNORED",
+            "state": "SHOWING"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "SHOWING",
+        "impressions": 1,
+        "credited": [
+          "tx-8"
+        ],
+        "credit_events": [
+          "tx-8",
+          "tx-8"
+        ],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "complete",
+          "code": "REWARD_CREDITED",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": "tx-8"
+        },
+        {
+          "seq": 6,
+          "action": "complete",
+          "code": "DUPLICATE_IGNORED",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": "tx-8"
+        }
+      ]
+    },
+    {
+      "id": "TC-09",
+      "requirements": [
+        "R-04"
+      ],
+      "title": "오프라인 완료 후 연결 복구 시 한 번만 보상",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "disconnect",
+            "value": null,
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-9",
+            "accepted": true,
+            "code": "REWARD_PENDING",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "REWARD_PENDING",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-9",
+            "accepted": false,
+            "code": "DUPLICATE_IGNORED",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "DUPLICATE_IGNORED",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "reconnect",
+            "value": null,
+            "accepted": true,
+            "code": "PENDING_CREDITED",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "PENDING_CREDITED",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "reconnect",
+            "value": null,
+            "accepted": true,
+            "code": "ONLINE",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "ONLINE",
+            "state": "SHOWING"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "SHOWING",
+        "impressions": 1,
+        "credited": [
+          "tx-9"
+        ],
+        "credit_events": [
+          "tx-9"
+        ],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "disconnect",
+          "code": "OFFLINE",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 6,
+          "action": "complete",
+          "code": "REWARD_PENDING",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": "tx-9"
+        },
+        {
+          "seq": 7,
+          "action": "complete",
+          "code": "DUPLICATE_IGNORED",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": "tx-9"
+        },
+        {
+          "seq": 8,
+          "action": "reconnect",
+          "code": "PENDING_CREDITED",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 9,
+          "action": "reconnect",
+          "code": "ONLINE",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-10",
+      "requirements": [
+        "R-05"
+      ],
+      "title": "완료 전 닫기에는 보상 없음",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "close",
+            "value": null,
+            "accepted": true,
+            "code": "CLOSED",
+            "state": "CLOSED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CLOSED",
+            "state": "CLOSED"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-10",
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "CLOSED"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_STATE",
+            "state": "CLOSED"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "CLOSED",
+        "impressions": 1,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "close",
+          "code": "CLOSED",
+          "from": "SHOWING",
+          "to": "CLOSED",
+          "txn": null
+        },
+        {
+          "seq": 6,
+          "action": "complete",
+          "code": "INVALID_STATE",
+          "from": "CLOSED",
+          "to": "CLOSED",
+          "txn": "tx-10"
+        }
+      ]
+    },
+    {
+      "id": "TC-11",
+      "requirements": [
+        "R-04",
+        "R-05"
+      ],
+      "title": "오프라인 완료 뒤 닫아도 복구 시 보상",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "disconnect",
+            "value": null,
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "OFFLINE",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "tx-11",
+            "accepted": true,
+            "code": "REWARD_PENDING",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "REWARD_PENDING",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "close",
+            "value": null,
+            "accepted": true,
+            "code": "CLOSED",
+            "state": "CLOSED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CLOSED",
+            "state": "CLOSED"
+          }
+        },
+        {
+          "expected": {
+            "action": "reconnect",
+            "value": null,
+            "accepted": true,
+            "code": "PENDING_CREDITED",
+            "state": "CLOSED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "PENDING_CREDITED",
+            "state": "CLOSED"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "CLOSED",
+        "impressions": 1,
+        "credited": [
+          "tx-11"
+        ],
+        "credit_events": [
+          "tx-11"
+        ],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "disconnect",
+          "code": "OFFLINE",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 6,
+          "action": "complete",
+          "code": "REWARD_PENDING",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": "tx-11"
+        },
+        {
+          "seq": 7,
+          "action": "close",
+          "code": "CLOSED",
+          "from": "SHOWING",
+          "to": "CLOSED",
+          "txn": null
+        },
+        {
+          "seq": 8,
+          "action": "reconnect",
+          "code": "PENDING_CREDITED",
+          "from": "CLOSED",
+          "to": "CLOSED",
+          "txn": null
+        }
+      ]
+    },
+    {
+      "id": "TC-12",
+      "requirements": [
+        "R-03"
+      ],
+      "title": "거래 ID 누락 시 보상 거부",
+      "status": "PASS",
+      "failures": [],
+      "steps": [
+        {
+          "expected": {
+            "action": "initialize",
+            "value": null,
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "INITIALIZED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "set_consent",
+            "value": "GRANTED",
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "CONSENT_UPDATED",
+            "state": "EMPTY"
+          }
+        },
+        {
+          "expected": {
+            "action": "load",
+            "value": null,
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "LOADED",
+            "state": "LOADED"
+          }
+        },
+        {
+          "expected": {
+            "action": "show",
+            "value": null,
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": true,
+            "code": "SHOWN",
+            "state": "SHOWING"
+          }
+        },
+        {
+          "expected": {
+            "action": "complete",
+            "value": "",
+            "accepted": false,
+            "code": "INVALID_TXN",
+            "state": "SHOWING"
+          },
+          "actual": {
+            "accepted": false,
+            "code": "INVALID_TXN",
+            "state": "SHOWING"
+          }
+        }
+      ],
+      "snapshot": {
+        "state": "SHOWING",
+        "impressions": 1,
+        "credited": [],
+        "credit_events": [],
+        "pending": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "action": "initialize",
+          "code": "INITIALIZED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 2,
+          "action": "set_consent",
+          "code": "CONSENT_UPDATED",
+          "from": "EMPTY",
+          "to": "EMPTY",
+          "txn": null
+        },
+        {
+          "seq": 3,
+          "action": "load",
+          "code": "LOADED",
+          "from": "EMPTY",
+          "to": "LOADED",
+          "txn": null
+        },
+        {
+          "seq": 4,
+          "action": "show",
+          "code": "SHOWN",
+          "from": "LOADED",
+          "to": "SHOWING",
+          "txn": null
+        },
+        {
+          "seq": 5,
+          "action": "complete",
+          "code": "INVALID_TXN",
+          "from": "SHOWING",
+          "to": "SHOWING",
+          "txn": ""
+        }
+      ]
+    }
+  ]
+}
