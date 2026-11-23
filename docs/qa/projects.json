@@ -3,18 +3,18 @@
     {
       "slug": "sleep-ai",
       "title": "수면 단계 분류와 신호 품질 검증",
-      "summary": "공개 Sleep-EDF 분류·품질 감사 자료를 QA 관점에서 다시 검토하는 작업 기록입니다.",
-      "status": "기존 실행 자료 있음 · 종수님 QA 기준 작성 중",
+      "summary": "종수님이 정한 QA 방향은 수면 단계 기준과 설정 근거의 타당성, 그리고 예외 상황에서도 신뢰할 수 있는지를 검증하는 것입니다. 개인 수면 품질 평가는 이번 QA 목표가 아닙니다.",
+      "status": "Test planning의 사용자 목표 기록 · 검증 기준과 우선순위 작성 중",
       "links": [
         {"label": "Sleep AI 저장소와 결과", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project"},
         {"label": "경계값 테스트케이스 공동 초안", "url": "https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/sleep-ai-qa-review/TEST_CASES_DRAFT.md"}
       ],
       "stages": {
-        "planning": {"record": "기존 구현 범위는 공개 EEG의 5단계 분류와 입력 신호 품질 감사입니다. 개인 수면 자료에 별도 구간 기준을 적용하는 방향은 종수님이 제안한 추가 아이디어이며 현재 구현되지 않았습니다.", "question": "이번 QA의 목표를 기존 분류 결과 검증과 새 개인 데이터 평가 중 어디에 둘지, 범위와 완료 기준을 어떻게 정할까요?", "links": [{"label": "기존 범위", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project#1-목적과-진행-범위"}]},
+        "planning": {"record": "[종수님 제안] 최종 사용자의 개인 수면 평가보다, 수면 단계의 판정 기준·설정 근거가 타당한지와 예외 상황에서 사용할 수 있는지를 검증합니다. 현재 구현은 공개 EEG의 5단계 분류와 입력 신호 품질 감사입니다. 세부 우선순위와 종료 기준은 아직 정하지 않았습니다.", "question": "원본 단계 라벨 매핑, 신호 품질 기준, 전환 탐지 규칙 중 무엇을 먼저 검증하고 어떤 근거로 타당성을 판단할까요?", "links": [{"label": "기존 구현 범위", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project#1-목적과-진행-범위"}, {"label": "Sleep-EDF 원본 단계 주석", "url": "https://physionet.org/content/sleep-edfx/1.0.0/"}]},
         "monitoring": {"record": "기존 분류 지표와 품질 감사 파일은 보존되어 있습니다. 이번 QA 작업의 진행률·검토 주기·결함 현황은 아직 기록되지 않았습니다.", "question": "테스트 진행을 어떤 숫자와 기록으로 추적할까요?", "links": [{"label": "기존 분류 지표", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/results/classification/metrics.json"}]},
         "control": {"record": "기존 전환 평가의 경계 오류를 수정한 이력은 있습니다. 이번 검토에서 어떤 결과가 나오면 우선순위나 범위를 바꿀지는 정해지지 않았습니다.", "question": "결함이나 누락이 확인되면 어떤 기준으로 중단·수정·재실행을 결정할까요?", "links": [{"label": "기존 결과 출처와 수정 이력", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/docs/PROVENANCE.md"}]},
-        "analysis": {"record": "참가자별 분할, 30초 구간, Wake·N1·N2·N3·REM 분류, 제외 구간이 주요 검토 대상입니다. 이는 공개 자료에서 확인한 범위입니다.", "question": "종수님이 가장 위험하다고 보는 실패는 무엇이며, 왜 먼저 확인해야 할까요?", "links": [{"label": "데이터와 평가 설명", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project#2-실험-설계"}]},
-        "design": {"record": "Codex가 신호 진폭 차이 999·1,000·1,001µV의 경계값 사례 형식만 제안했습니다. 예상 결과는 아직 종수님이 정하지 않았습니다.", "question": "현재 탐색용 규칙의 ‘1,000µV 이상’에서 세 입력의 예상 결과와 근거를 어떻게 적을까요?", "links": [{"label": "공동 작성 테스트케이스 초안", "url": "https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/sleep-ai-qa-review/TEST_CASES_DRAFT.md"}]},
+        "analysis": {"record": "원본 Sleep-EDF 주석에는 W·R·1·2·3·4·M·?가 있고, 현재 코드는 W·1·2·3·4·R을 5개 분류에 사용하며 3·4를 N3로 합칩니다. 이 매핑의 목적·근거와 제외 라벨 처리는 QA 검토 대상입니다.", "question": "원본 주석과 코드 매핑에서 가장 먼저 확인할 불일치 또는 예외는 무엇인가요?", "links": [{"label": "원본 주석 설명", "url": "https://physionet.org/content/sleep-edfx/1.0.0/"}, {"label": "현재 라벨 매핑 코드", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/eeg/features.py#L12-L14"}]},
+        "design": {"record": "Codex가 999·1,000·1,001µV 경계값 사례를 제안했지만 종수님이 채택한 첫 케이스는 아닙니다. 단계 라벨 매핑과 비정상 신호 처리도 설계 후보입니다.", "question": "첫 케이스를 라벨 매핑, 제외 라벨, 신호 품질 경계 중 무엇으로 정할까요?", "links": [{"label": "공동 작성 테스트케이스 후보", "url": "https://github.com/ParsleyOnLibra/ParsleyOnLibra/blob/main/projects/sleep-ai-qa-review/TEST_CASES_DRAFT.md"}]},
         "implementation": {"record": "기존 공개 저장소에 신호 품질 함수와 자동 테스트가 있습니다. 이번 QA 케이스를 실행하기 위한 입력·환경은 아직 종수님과 정하지 않았습니다.", "question": "직접 실행할 환경과 테스트 데이터를 어떤 방식으로 준비할까요?", "links": [{"label": "신호 품질 함수", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/eeg/features.py#L59-L71"}, {"label": "재현 안내", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/docs/REPRODUCING.md"}]},
         "execution": {"record": "기존 평가에서는 품질 통과 4,275구간의 정확도 95.42% 등이 기록되어 있습니다. 이번에 공동 설계하는 케이스는 아직 실행하지 않았습니다.", "question": "각 케이스의 입력·실제 출력·예상값 비교를 어떤 형태로 남길까요?", "links": [{"label": "기존 실행 지표", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/results/classification/metrics.json"}]},
         "completion": {"record": "이번 QA 작업의 사용자 검토·종료 판단은 아직 없습니다. 기존 지표는 현재 코드의 재학습 결과로 단정할 수 없습니다.", "question": "어떤 케이스와 근거가 갖춰져야 이 QA 검토를 완료했다고 말할 수 있을까요?", "links": [{"label": "결과 출처와 한계", "url": "https://github.com/ParsleyOnLibra/sleep-ai-project/blob/main/docs/PROVENANCE.md"}]}
