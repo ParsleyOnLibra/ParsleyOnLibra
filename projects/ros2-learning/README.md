@@ -10,6 +10,7 @@ AMR QA 경험을 바탕으로 로봇 내부의 데이터 흐름을 관찰하고 
 
 ## 현재 기록
 
+- [가상 AMR 주행·지도·QA 환경 구축 가이드](guides/virtual-amr-environment.md): 영상과 유사한 기능을 위한 단계별 설계·완료 기준. **가이드 작성, 새 환경 실행 전**
 - [001 · ROS 2 기본 개념과 AMR QA](notes/001-concepts.md): 개념 설명, 확인 질문과 참고 답안. 사용자의 직접 답변은 아직 기록되지 않았습니다.
 - [실습 기록 양식](templates/lab-record.md)
 - [Apple Silicon Docker 실행 환경](environment/README.md): ROS 2 Jazzy, Gazebo, Nav2, SLAM Toolbox, RViz 실행 절차
