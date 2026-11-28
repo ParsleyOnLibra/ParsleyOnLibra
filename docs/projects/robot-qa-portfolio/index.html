@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="양종수의 로봇 QA 사례 모음. AMR 소프트웨어 QA와 액추에이터 QC 실무, 다중 로봇 시뮬레이션 QA, 테스트 설계 과제를 사례별로 정리했습니다.">
+  <meta name="theme-color" content="#103d35">
+  <title>로봇 QA 사례 모음 | Jongsoo Yang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../case-pages.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로가기</a>
+  <header class="top"><div class="wrap top-inner"><a class="brand" href="../../index.html"><span class="mark">JS</span>Jongsoo Yang</a><nav><a href="../../index.html#projects">포트폴리오 홈 ↗</a></nav></div></header>
+  <main id="main" class="wrap">
+    <section class="hero">
+      <p class="eyebrow">ROBOT QA PORTFOLIO</p>
+      <h1>로봇 QA 사례 모음</h1>
+      <p class="lead">로봇 분야에서 5년 5개월 일했습니다. 유진로봇에서 1년 8개월 동안 AMR 소프트웨어 QA를, 로보티즈에서 3년 9개월 동안 액추에이터 조립·QC를 맡았습니다. 실제 로봇으로 정기 릴리즈 QA를 하며 여러 로봇이 함께 쓰는 설비의 연동 결함을 직접 찾아 보고했고, 손으로 재현하기 어려운 간헐적 문제는 자동화로 관찰 기회를 늘렸습니다. 지금은 ROS 2·Gazebo로 다중 로봇 시뮬레이션 QA를 하고 있습니다.</p>
+      <figure><img src="cover_warehouse.png" alt="Gazebo 창고 시뮬레이션을 위에서 본 화면. 카트형 로봇 4대가 랙 사이 통로를 다닌다" width="1280" height="720"><figcaption>개인 프로젝트 화면 · Gazebo 창고 시뮬레이션(80 × 50 m)을 위에서 본 모습 · 카트형 로봇 4대가 관제 서버의 허가를 받아 왕복 · 구현은 AI 도구</figcaption></figure>
+      <nav class="toc" aria-label="사례 목차">
+        <a href="#case1">01 다중 로봇 설비 연동 E2E</a><a href="#case2">02 결함 재현과 전달</a><a href="#case3">03 반복 시험 자동화</a><a href="#case4">04 액추에이터 품질 검사</a><a href="#case5">05 시뮬레이션 회귀 원인 좁히기</a><a href="#case6">06 로봇 4대 관제 실연동</a><a href="#case7">07 AMR QA 테스트 랩</a>
+      </nav>
+    </section>
+
+    <section class="block" aria-labelledby="skills-title">
+      <h2 id="skills-title">핵심 역량</h2>
+      <div class="skills">
+        <div><strong>실로봇 릴리즈 QA</strong>AMR 정기 릴리즈의 주행·맵·도킹·장애물 회피 테스트, 테스트 결과·품질 지표 리포트</div>
+        <div><strong>시험 설계</strong>상태 전이, 결정표, 경계값 분석, 동등 분할 (ISTQB CTFL, 2026)</div>
+        <div><strong>결함 재현·전달</strong>재현 조건·빈도·로그·영상을 Jira·Confluence로 전달, 수정 후 확인·회귀 테스트</div>
+        <div><strong>자동화</strong>Python·Selenium 반복 시험 자동화, 센서 기반 측정 장치 제작</div>
+        <div><strong>소통</strong>해외 개발자에게 이슈를 영어로 설명</div>
+      </div>
+      <p class="note">회사 사례는 사내 자료(로그 원문, 관제 화면, 내부 문서)를 쓰지 않고 제 기억과 기록으로 다시 정리했으며, 그림은 이해를 돕기 위해 새로 그렸습니다. 개인 프로젝트의 코드·테스트는 AI 도구(Claude Code, Codex)가 작성했고, 사례마다 제가 맡은 부분을 따로 적었습니다.</p>
+    </section>
+
+    <section class="case" id="case1" aria-labelledby="c1">
+      <h2 id="c1">01. 다중 로봇 설비 연동 E2E 시나리오 테스트 <span class="tag work">실무 · 유진로봇 · 2023.01–2024.08</span></h2>
+      <p>여러 로봇과 엘리베이터·자동문이 함께 움직이는 E2E 시나리오를 설계해 연동 결함을 직접 찾아 보고했고, 수정된 기능을 같은 시나리오로 확인·회귀 테스트했습니다.</p>
+    </section>
+
+    <section class="case" id="case2" aria-labelledby="c2">
+      <h2 id="c2">02. 결함 재현과 전달 <span class="tag work">실무 · 유진로봇</span></h2>
+      <p>결함의 재현 조건·빈도·로그·영상을 정리해 Jira·Confluence로 개발팀에 전달하고, 수정 뒤 확인·회귀 테스트를 했습니다. 로봇이 실제로 한 일과 관제가 보여 준 상태를 나란히 보여 주려고 로봇 영상과 관제 화면 영상을 따로 찍어 전달했습니다.</p>
+      <p class="note">결함 보고 형식 예시 (실제 사내 결함이 아니라 형식을 보여 주려고 만든 가상의 예입니다)</p>
+<pre class="bug">Title: Robot stays stopped after the obstacle in front of it is removed
+Steps to reproduce:
+  1. Start a mission on a straight path.
+  2. Place a box on the path; the robot stops in front of it.
+  3. Remove the box and wait 10 seconds.
+Expected: The robot resumes the mission.
+Actual:   The robot stays stopped until the mission is restarted.
+Reproducibility: 5/5 under the same conditions
+Environment: robot SW version, fleet-manager version, map name
+Attachments: robot log, robot video, fleet-manager screen recording</pre>
+    </section>
+
+    <section class="case" id="case3" aria-labelledby="c3">
+      <h2 id="c3">03. 반복 시험 자동화 <span class="tag work">실무 · 유진로봇</span></h2>
+      <p>손으로 재현하기 어려운 간헐적 문제는 Python·Selenium으로 반복 시험을 자동화해 발생 빈도와 증거를 확보했습니다. 측정 시험은 센서 기반 측정 장치를 직접 만들어 자동화했습니다.</p>
+    </section>
+
+    <section class="case" id="case4" aria-labelledby="c4">
+      <h2 id="c4">04. 액추에이터 품질 검사와 측정 환경 개선 <span class="tag work">실무 · 로보티즈 · 2019.03–2022.11</span></h2>
+      <ul>
+        <li>로봇 액추에이터 조립 전후 품질 검사와 성능·소음·신뢰성(에이징·강제 부하) 시험을 했습니다.</li>
+        <li>측정값이 주변 소리 때문에 자주 튀자, 소음 챔버를 직접 만들어 측정 환경을 바꾸고 믿을 만한 데이터를 얻었습니다.</li>
+        <li>불량품의 증상과 내부 상태로 원인 부위를 판단하고 수리했습니다.</li>
+      </ul>
+    </section>
+
+    <section class="case" id="case5" aria-labelledby="c5">
+      <h2 id="c5">05. 창고 시뮬레이션에서 회귀 원인 좁히기 <span class="tag">개인 프로젝트 · 2026.11</span></h2>
+      <p class="role">결정·관찰: 본인 · 구현·실행: Claude Code · 환경: ROS 2 Jazzy, Gazebo, Nav2(WSL2), 랙 4줄을 둔 40 × 25 m 창고, 가상 물류 AMR의 지그재그 작업</p>
+      <p>주행 규칙을 여러 개 더한 뒤 같은 작업의 성공률이 크게 떨어졌습니다. 원인을 가르기 위해, AI가 낸 선택지 중 <strong>기준선으로 돌아가 한 가지씩 다시 적용</strong>하는 방식을 골랐습니다(단계 순서는 AI 제안).</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>설정</th><th>작업 성공</th><th>확인한 것</th></tr></thead>
+        <tbody>
+          <tr><td>설정 1 (처음)</td><td>2/2</td><td>기준</td></tr>
+          <tr><td>설정 2~4 (후진 제한, 통과점, 감속 구역 등을 차례로 더함)</td><td>0/2 → 0/1 → 작업 시작 못 함</td><td>규칙을 여러 개 바꾼 뒤 성공률이 떨어진 회귀</td></tr>
+          <tr><td>기준선 다시 측정</td><td>2/2</td><td>처음 설정은 여전히 성공 → 그 뒤에 바꾼 설정 쪽에 원인</td></tr>
+          <tr><td>하나씩 다시 적용: + 통과점</td><td>작업 2/2, 복귀 0/1</td><td>모서리 경유점을 0.99 m로 스쳐 '지남' 반경(0.7 m)을 놓침</td></tr>
+          <tr><td>+ 통과점 (반경 1.5 m로 조정)</td><td>작업 2/3, 복귀 1/1</td><td>모서리 문제 재발 없음. 남은 실패 1회는 통로를 건너뛰는 다른 이상 동작</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pair">
+        <figure><img src="case5_issue.png" alt="반경 0.7 m일 때 로봇이 경유점을 스쳐 지나간 장면" loading="lazy"><figcaption>이슈 · 반경 0.7 m: 빨간 원 밖 0.99 m를 스쳐 경유점을 놓침 → 시간 초과</figcaption></figure>
+        <figure><img src="case5_normal.png" alt="반경 1.5 m로 바꾼 뒤 로봇이 경유점 안으로 지나간 장면" loading="lazy"><figcaption>정상 · 반경 1.5 m로 바꾼 뒤 0.37 m 안으로 지나가 다음 통로로 진행</figcaption></figure>
+      </div>
+      <p class="note">위에서 본 시뮬레이터 화면 · 노란 판의 T자가 로봇 앞쪽 · 원·+ 표시는 덧그림, 원 크기는 대략. 반경을 키우는 쪽은 제 실무 경험을 바탕으로 골랐고, 값 1.5 m는 AI가 제안했습니다. 영상에서 튀어 보인 약 60° 꺾임은 프레임이 약 2.5초 빠진 녹화 문제로 가려냈고(대조는 AI 도구), 같은 장면의 통로 건너뛰기와 제자리 회전은 실제 주행 이상으로 따로 기록했습니다.</p>
+    </section>
+
+    <section class="case" id="case6" aria-labelledby="c6">
+      <h2 id="c6">06. 로봇 4대 관제 실연동 — 이슈를 기록하고 고쳐 다시 시험 <span class="tag">개인 프로젝트 · 2026.11</span></h2>
+      <p class="role">결정: 본인(규칙·시나리오·이슈 처리 방향) · 관제 프로그램·시험 코드·실행·분석: Claude Code</p>
+      <ul>
+        <li><strong>환경:</strong> 80 × 50 m 창고에서 카트형 로봇 4대(0.8 m/s)가 쉬지 않고 왕복합니다. 로봇은 공개된 상용 사양을 참고한 근사 모델이며 일부는 가정입니다.</li>
+        <li><strong>통로 관리:</strong> 통로를 구간 42개와 교차점 7개로 나눠, 로봇이 구간마다 요청 → 허가 → 통과 → 해제합니다. 연습용 가상 관제 시스템입니다.</li>
+        <li><strong>제가 정한 것:</strong> 1대로 시작해 늘리기, 창고 배치, 점유 규칙, 통로 반쪽 안에서는 같은 방향 로봇만 다니기, 이슈가 나면 멈추고 기록한 뒤 고쳐서 다시 시험하기</li>
+      </ul>
+      <div class="pair">
+        <figure><img src="env_sim.png" alt="시뮬레이터 화면" loading="lazy"><figcaption>시뮬레이터 화면</figcaption></figure>
+        <figure><img src="env_fms.png" alt="연습용 가상 관제 화면" loading="lazy"><figcaption>관제 화면 (연습용 가상 관제 시스템)</figcaption></figure>
+      </div>
+
+      <h3>첫 실연동: 로봇 3대가 자기 위치를 잃음</h3>
+      <div class="pair">
+        <figure><img src="loc_fms.png" alt="관제가 본 위치. robot4가 랙 위에 있다고 표시됨" loading="lazy"><figcaption>이슈 · 관제가 본 위치: robot4(빨간 원)가 랙 위에 있다고 표시되고 고장으로 멈춤(로봇이 스스로 추정한 위치)</figcaption></figure>
+        <figure><img src="loc_sim.png" alt="같은 순간 시뮬레이터의 실제 위치" loading="lazy"><figcaption>실제 위치 · 같은 순간: 가운데 교차 통로의 정류 지점, 약 13 m 차이 (1차)</figcaption></figure>
+      </div>
+      <p><strong>본인 판단:</strong> 이슈로 보고 운행을 멈춘 뒤, 기록하고 고쳐서 다시 시험하기로 정했습니다. <strong>AI 분석·수정:</strong> 위치 추정 설정 조정 → 1대 비교 최대 위치 오차 1.71 m → 0.27 m, 이후 4대 운행에서 위치 상실 0건.</p>
+
+      <h3>출발점에서 방향을 못 맞추고 머묾</h3>
+      <div class="pair">
+        <figure><img src="h_fms.png" alt="출발점에서 두 로봇의 방향 비교" loading="lazy"><figcaption>3차 · 같은 순간: 파란 원 ③은 거의 오른쪽(약 -20°)이라 곧 정상 완료, 빨간 원 ④는 약 160°에서 멈춰 약 2분 뒤 시간 초과(각도는 관제가 본 방향)</figcaption></figure>
+        <div>
+          <ul>
+            <li><strong>3차 · 첫 수정 뒤:</strong> 한 로봇에서 2건. 1대 비교로는 고쳐졌지만(3/6 → 6/6) 4대에서 다시 남</li>
+            <li><strong>4차 · 두 번째 수정 뒤:</strong> 세 로봇에서 3건 → 왕복 75%. 새 수정이 다른 빈틈을 만든 것으로 AI가 추정</li>
+            <li><strong>5차 · 회전 전용 제어기:</strong> 시간 초과 0, 방향 전환 4차 110~500초 → 5차 16~17초 (30분 운행 1회, 표본 2~3회)</li>
+          </ul>
+          <p class="note">1대 비교와 4대 결과가 두 번 엇갈려 4대 실연동 결과로 확인했습니다. 수정 방법은 AI가 낸 선택지 중 추천안을 제가 골랐습니다.</p>
+        </div>
+      </div>
+
+      <h3>새 관제 결함: 지나간 입구 구역을 다시 쥠</h3>
+      <div class="pair">
+        <figure><img src="zone_issue.png" alt="출발점의 로봇이 지나간 입구 구역을 다시 잡은 장면" loading="lazy"><figcaption>이슈 · 4차: 출발점에 선 ③이 이미 지나간 입구 구역(네모)을 다시 쥐어, 들어오던 ②가 약 76초 기다림</figcaption></figure>
+        <figure><img src="zone_fixed.png" alt="수정 뒤 들어오는 로봇이 입구 구역을 받아 지나가는 장면" loading="lazy"><figcaption>정상 · 5차(수정 뒤): 들어오는 ②가 입구 구역을 받아 지나가고, 나갈 ③은 출발점에서 기다림</figcaption></figure>
+      </div>
+      <p><strong>왜 놓쳤나:</strong> 가짜 로봇 시험은 도착과 동시에 작업이 끝나 '도착 뒤 방향 맞추기' 시간이 없었고, 실연동에서 드러났습니다. <strong>AI 수정:</strong> 회귀 시험 2개(수정을 되돌리면 2개 실패) → 5차(30분 1회)에서 다시 쥔 일 0회(4차 9회). 안전 결함이 아니라 오래 막는 결함입니다.</p>
+
+      <h3>운행별 왕복 성공률</h3>
+      <div class="table-wrap"><table class="runs">
+        <thead><tr><th>운행</th><th>왕복 성공</th><th>드러난 것</th></tr></thead>
+        <tbody>
+          <tr><td>1차 · 첫 실연동</td><td>6회 중 3회</td><td>3대가 위치를 잃어 운행 도중 멈춤</td></tr>
+          <tr><td>2차 · 위치 추정 수정 뒤</td><td>19회 중 16회</td><td>머묾·교차점 중단 이슈가 새로 드러남</td></tr>
+          <tr><td>3차 · 주행 이슈 2개 수정</td><td>26회 중 24회</td><td>관제 결함(구간을 일찍 풂) 발견</td></tr>
+          <tr><td>4차 · 입구 구역·관제 수정·머묾 후속</td><td>12회 중 9회</td><td>실패 3회 모두 머묾 · 새 관제 결함 발견</td></tr>
+          <tr><td>5차 · 회전 전용 제어기·재점유 수정</td><td>18회 중 18회</td><td>30분 운행 1회</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">각 1회 운행. 2차 실패 1건은 시뮬레이터를 먼저 끈 운영 실수(빼면 89%). 운행을 멈출 때 진행 중이던 왕복은 취소로 집계 밖. 이슈를 피하려고 설정을 바꾸지 않고, 드러난 이슈를 기록 → 수정 → 재시험했습니다.</p>
+    </section>
+
+    <section class="case" id="case7" aria-labelledby="c7">
+      <h2 id="c7">07. AMR 미션·도킹 QA 테스트 랩 <span class="tag">개인 프로젝트 · 2026.10</span></h2>
+      <p class="role">주제 선정: 본인 · 구현: Codex</p>
+      <div class="flow"><span>테스트케이스 제목: 배터리 20% 승인</span><i>≠</i><span>실제로 들어간 값: 배터리 기본값 50%</span></div>
+      <ul>
+        <li><strong>오류 주입으로 드러남:</strong> 20% 경계 결함을 일부러 심어도 아무 테스트도 잡지 못함 → 테스트케이스 자체의 결함</li>
+        <li><strong>수정 뒤:</strong> 사전 조건에 배터리 20%를 명시하고 다시 돌림 → 심은 결함 3개를 모두 잡음</li>
+      </ul>
+      <p class="note">테스트가 통과해도 제대로 시험하는지는 따로 확인해야 하고, AI가 만든 테스트라면 더 그렇습니다. <a href="../amr-qa-lab/">실행 결과 보기 ↗</a></p>
+    </section>
+
+  </main>
+  <footer class="foot"><div class="wrap"><p>© 2026 양종수 · <a href="https://github.com/ParsleyOnLibra" style="color:inherit">GitHub</a> · 개인 프로젝트의 코드·테스트는 AI 도구(Claude Code, Codex)가 작성했고, 사례마다 제가 맡은 부분을 따로 적었습니다.</p></div></footer>
+</body>
+</html>
